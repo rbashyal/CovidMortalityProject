@@ -1,6 +1,6 @@
 # CovidMortalityProject
 
-## Visualize estimates of COVID-19 Deaths averted due to vaccines  
+### Visualize estimates of COVID-19 Deaths averted due to vaccines  
 
 This project aims to replicate and visualize the results of the following paper:
 
@@ -8,7 +8,7 @@ This project aims to replicate and visualize the results of the following paper:
 Sumedha Gupta, Jonathan Cantor, Kosali I. Simon, Ana I. Bento, Coady Wing, and Christopher M. Whaley
 Health Affairs 2021 40:9, 1465-1472*
 
-The Overall steps are:
+The overall steps are:
  
  1. Get cumulative daily data on Covid mortality from NYC COVID data github and cumulative daily Vaccination count from Bloomberg
  2. Run a Poiosson model on a State-Week level panel data where the outcome is cumulative death at the end of each week and covariates include cumulative vaccination count for each week and their 4 lags
