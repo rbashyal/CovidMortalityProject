@@ -211,20 +211,6 @@ function drawline(){
               .attr("stroke-width", '2')
               .attr("stroke-dasharray", ("2")) 
 
-              //------------------append label at end of line --------------//  
-              //bind to each 'lines' the final data point in our data series 
-              lines.append("text")
-              .datum(function(d){
-                return{
-                  last_day: d[d.length-1].last_day
-                  ,DEATH_VACC1: d[d.length-1].DEATH_VACC1
-                };
-              })
-              .text("With Vaccines")
-              .attr("transform", function(d) {
-                return "translate(" + (xScale(d.last_day) + 1)  
-                + "," + (yScale(d.DEATH_VACC1) + 5 ) + ")";})
-
 
               lines.append("path")
               .attr("d", area0 )
@@ -242,17 +228,28 @@ function drawline(){
 
               //------------------append label at end of line --------------//  
               //bind to each 'lines' the final data point in our data series 
-              lines.append("text")
-              .datum(function(d){
-                return{
-                  last_day: d[d.length-1].last_day
-                  ,DEATH_VACC0: d[d.length-1].DEATH_VACC0
-                };
-              })
-              .text("Without Vaccines")
-              .attr("transform", function(d) {
-                return "translate(" + (xScale(d.last_day) + 5)  
-                + "," + (yScale(d.DEATH_VACC0) + 5 ) + ")";})
+
+              const add_label = function(text, em, outcome){
+
+                lines.append("text")
+                .datum(function(d){
+                  return{
+                    xval: d[d.length-1].last_day
+                    ,yval: d[d.length-1][outcome]
+                  };
+                })
+                .text(text)
+                 .attr("transform", function(d) {
+                  return "translate(" + (xScale(d.xval) + 5)  
+                  + "," + (yScale(d.yval) + 5 ) + ")";})
+                .attr("dy", em)
+                ;
+              }; 
+              add_label("Predicted Deaths", "0em", "DEATH_VACC0")
+              add_label("Without Vaccines", "1em", "DEATH_VACC0")
+
+              add_label("Predicted Deaths", "0em", "DEATH_VACC1")
+              add_label("With Vaccines", "1em", "DEATH_VACC1")
 
             //switch to toggle between showing and hiding actual death toll
             
