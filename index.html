@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="library/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="library/chosen/chosen.css">
+
+    <script type = "text/javascript" src = 'library/jquery-3.6.0.min.js'></script>
+    <script type = "text/javascript" src=  "library/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <script type = "text/javascript" src=  "library/chosen/chosen.jquery.min.js"></script>
+    <script type = "text/javascript" src = "library/d3.js"></script>
+    <script type = "text/javascript" src = "Data/json_deaths.js"></script>
+    <script type = "text/javascript" src = "Data/json_averted_deaths.js"></script>
+    <script type = "text/javascript" src = "main.js"></script>
+    <title>Line Chart</title>
+</head>
+<body onload = "drawline()">
+    <div id = "dropdown">
+        <select class = "chosen-select" id = "dropdown1">
+          <option></option>
+    
+        </select>
+      </div>
+    <div id = "canvas">
+
+    </div>
+    <div>
+        <input type="radio" name="trueToll" value="no" checked> Dont Show True Toll 
+        <input type="radio" name="trueToll" value="yes"> Show True Toll
+
+    </div>
+    <div class = "legends" id = "legends_here">
+                                                  
+    </div> 
+    
+</body>
+</html>
