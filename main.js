@@ -43,7 +43,7 @@ function drawline(){
           
           //initially the empty axes will be tailored to max min values of an example state - CA
           var dataFilter = data.filter(d=>{
-            return d.st === "CA";
+            return d.st === "California";
           });
 
 
@@ -83,11 +83,13 @@ function drawline(){
         .attr("x", -200)
         .attr("y", 1)
         .attr("dy", "1em")
-        .attr("font-size", "100%")
+        .attr("font-size", "110%")
+        .style("font-family", "Georgia")
         ;
 
         d3.selectAll('.tick text')
           .attr("font-size", "150%")
+          .style("font-family", "Georgia")
 
 
         //add options to the select button
@@ -142,6 +144,7 @@ function drawline(){
 
           d3.selectAll('.tick text')
             .attr("font-size", "150%")
+            .style("font-family", "Georgia")
 
           //--------------------LINE CONSTRUCTOR------------------------//
 
@@ -240,9 +243,10 @@ function drawline(){
                 })
                 .text(text)
                  .attr("transform", function(d) {
-                  return "translate(" + (xScale(d.xval) + 5)  
-                  + "," + (yScale(d.yval) + 5 ) + ")";})
+                  return "translate(" + (xScale(d.xval) + 25)  
+                  + "," + (yScale(d.yval) -20 ) + ")";})
                 .attr("dy", em)
+                .style("font-family", "Georgia")
                 ;
               }; 
               add_label("Predicted Deaths", "0em", "DEATH_VACC0")
@@ -295,7 +299,7 @@ function drawline(){
               .attr("position", "absolute")
               .style("fill", "#2b2929")
               .style("font-family", "Georgia")
-              .style("font-size", "100%")
+              .style("font-size", "95%")
 
               const  var_list = ["DEATH_VACC1", "DEATH_VACC0", "cum_deaths"];
 
@@ -330,7 +334,7 @@ function drawline(){
               .duration(200)
               .style("opacity", 1);
 
-              tooltip.html("Cumulative Death Toll <br>"+d3.format(",")(d[item]))
+              tooltip.html(d.last_day_raw+"<br>"+d3.format(",")(d[item]))
               .style("left", (d3.event.pageX + 25) + "px")
               .style("top", (d3.event.pageY)+"px")
 

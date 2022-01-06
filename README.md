@@ -12,9 +12,9 @@ The overall steps are:
 
 1.  Get cumulative daily data on Covid mortality from NYC COVID data github and cumulative daily Vaccination count from Bloomberg
 
-    https://github.com/BloombergGraphics/covid-vaccine-tracker-data
+    https://github.com/BloombergGraphics/covid-vaccine-tracker-data  
     https://github.com/nytimes/covid-19-data
-    
+
 2.  Run a Poiosson model on a State-Week level panel data where the outcome is cumulative death at the end of each week and covariates include cumulative vaccination count for each week and their 4 lags
     1. Include time and state control dummies
 3.  Get predicted cumulative deaths at the end of each week for each US state

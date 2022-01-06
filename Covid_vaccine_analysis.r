@@ -139,7 +139,7 @@ qpois <- glm(formula, family = "quasipoisson", data = reg_dta, na.action = na.ex
 #perform cluster robust std errors
 qpois_cl_robust <-coeftest(qpois, vcov = sandwich::vcovCL(qpois, cluster = ~ st))
 
-stargazer(qpois, qpois_cl_robust, out = "qpois_models.txt")
+stargazer(qpois, qpois_cl_robust, out = "regression_coefficents.txt")
 
 
 
@@ -210,14 +210,14 @@ d3_pred_deaths <- pred_realized%>%
          ,CI_DEATH_VACC1_HIGH = ceiling(ci_death_vacc1_high*POPEST18PLUS2020/100)
   )%>%
   select(st, year, week, last_day, cum_deaths, DEATH_VACC0, CI_DEATH_VACC0_LOW, CI_DEATH_VACC0_HIGH
-                                 ,   DEATH_VACC1, CI_DEATH_VACC1_LOW, CI_DEATH_VACC1_HIGH)
+                                 ,   DEATH_VACC1, CI_DEATH_VACC1_LOW, CI_DEATH_VACC1_HIGH, POPEST18PLUS2020)
   
 
 
 ##calculate total deaths averted in time t = T across all states
 #se of estimated total averted deaths - realized
 #se of estimated total averted deaths - counter factual
-
+us_pop_18plus = sum(state_pop_18$POPEST18PLUS2020)
 d3_pred_deaths_national <- d3_pred_deaths%>%
   group_by(last_day)%>%
   mutate(st = "US")%>%
@@ -231,8 +231,13 @@ d3_pred_deaths_national <- d3_pred_deaths%>%
             ,DEATH_VACC1 = sum(DEATH_VACC1)
             ,CI_DEATH_VACC1_LOW = sum(CI_DEATH_VACC1_LOW)
             ,CI_DEATH_VACC1_HIGH = sum(CI_DEATH_VACC1_HIGH)
+            ,POPEST18PLUS2020 = us_pop_18plus
             )
-d3_table_deaths <- bind_rows(d3_pred_deaths_national, d3_pred_deaths)
+d3_table_deaths <- bind_rows(d3_pred_deaths_national, d3_pred_deaths)%>%
+  left_join(fips, by = c("st"= "state"))%>%
+  mutate(st = ifelse(is.na(state_code), "United States-Total", state_name))%>%
+  select(-c("state_code", "state_name"))%>%
+  arrange(desc(POPEST18PLUS2020), st, last_day)
 
 
 d3_Averted_deaths_nat <- d3_pred_averted_deaths%>%
