@@ -1,40 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="library/bootstrap-3.3.7-dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="library/chosen/chosen.css">
-
-    <script type = "text/javascript" src = 'library/jquery-3.6.0.min.js'></script>
-    <script type = "text/javascript" src=  "library/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
-    <script type = "text/javascript" src=  "library/chosen/chosen.jquery.min.js"></script>
-    <script type = "text/javascript" src = "library/d3.js"></script>
-    <script type = "text/javascript" src = "Data/json_deaths.js"></script>
-    <script type = "text/javascript" src = "Data/json_averted_deaths.js"></script>
-    <script type = "text/javascript" src = "main.js"></script>
-    <title>Line Chart</title>
-</head>
-<body onload = "drawline()">
-    <div id = "dropdown">
-        <select class = "chosen-select" id = "dropdown1">
-          <option></option>
-    
-        </select>
+   <head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <!-- Bootstrap CSS -->
+      <!-- Bootstrap CSS -->
+      <link rel="stylesheet" href="library/bootstrap-5.1.1-dist/css/bootstrap.min.css">
+      <link rel="stylesheet" href="library/jquery.nouislider.css">
+      <link rel="stylesheet" href="library/chosen/chosen.css">
+      <script type = "text/javascript" src = 'library/jquery-3.6.0.min.js'></script>
+      <script type = "text/javascript" src=  "library/bootstrap-5.1.1-dist/js/bootstrap.min.js"></script>
+      <script type = "text/javascript" src=  "library/chosen/chosen.jquery.min.js"></script>
+      <script type = "text/javascript" src = "library/d3.js"></script>
+      <script type = "text/javascript" src = "library/jquery.nouislider.js"></script>
+      <script type = "text/javascript" src = "Data/json_deaths.js"></script>
+      <script type = "text/javascript" src = "Data/json_averted_deaths.js"></script>
+      <script type = "text/javascript" src = "main.js"></script>
+      <title>Line Chart</title>
+   </head>
+   <body onload = "drawline()">
+      <div class="container">
+         <nav class="navbar navbar-light bg-light">
+            <a class="navbar-brand" href="#">
+               <h3><img src="images/02010 Bumble Bee.svg" width="45" height="45" class="d-inline-block align-top" alt="">Estimating COVID-19 Deaths Averted by Vaccines</h3>
+            </a>
+         </nav>
+         <div class="shadow p-3 mb-5 bg-white rounded">
+            <div class = "row alert-secondary">
+               <div class = "col-6" >
+                  Select Outcome
+                  <select class = "chosen-select" id = "dropdown1">
+                     <option></option>
+                  </select>
+               </div>
+               <div class = "col-6" >
+                  Overlay Actual Death Count
+                  <input type="radio" name="trueToll" value="no" checked> No 
+                  <input type="radio" name="trueToll" value="yes"> Yes
+               </div>
+            </div>
+            <div class = "row" id = "canvas">
+            </div>
+         </div>
       </div>
-    <div id = "canvas">
-
-    </div>
-    <div>
-        <input type="radio" name="trueToll" value="no" checked> Hide Actual Death Toll 
-        <input type="radio" name="trueToll" value="yes"> Show Actual Death Toll
-
-    </div>
-    <div class = "legends" id = "legends_here">
-                                                  
-    </div> 
-    
-</body>
+      <div class = "container">
+         <p>
+            <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+            Button with data-bs-target
+            </button>
+            <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample2" aria-expanded="false" aria-controls="collapseExample2">
+            Button with data-bs-target 2
+            </button>
+         </p>
+         <div class="collapse" id="collapseExample">
+            <div class="card card-body">
+               Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.
+            </div>
+         </div>
+         <div class="collapse" id="collapseExample2">
+            <div class="card card-body">
+               Booyahahahahahahhah
+            </div>
+         </div>
+      </div>
+   </body>
 </html>

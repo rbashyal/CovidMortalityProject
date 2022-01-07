@@ -12,15 +12,15 @@ function drawline(){
       .append("svg")
       .attr('width', width)
       .attr("height", height)
-      .style('background', "#f3f6f4")
+      .style('background', "#F5F5F5")
       .attr("preserveAspectRatio", "xMinYMin meet")
       .attr("viewBox", "-"
           + (adj+30) + " -"
           + adj + " "
           + (width + adj*3 ) + " "
           + (height + adj*2))
-      .style("padding", padding)
-      .style("margin", margin)
+      //.style("padding", padding)
+      //.style("margin", margin)
       //legend
 
       var svg_legend = d3.select('#legends_here')
