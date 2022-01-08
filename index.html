@@ -28,29 +28,79 @@
          </nav>
          <div class = "container">
             <p>
-               <button class="btn btn-primary btn-lg" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+               <button class="btn btn-primary btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
                Overview
                </button>
-               <button class="btn btn-primary btn-lg" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample2" aria-expanded="false" aria-controls="collapseExample2">
-               Regression Model
+               <button class="btn btn-primary btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample2" aria-expanded="false" aria-controls="collapseExample2">
+               Methodology
                </button>
-               <button class="btn btn-primary btn-lg" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample3" aria-expanded="false" aria-controls="collapseExample3">
-               Data SOurces
+               <button class="btn btn-primary btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample3" aria-expanded="false" aria-controls="collapseExample3">
+               Data Sources
                </button>
             </p>
             <div class="collapse" id="collapseExample">
                <div class="card card-body">
-                  Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.
+                  <p>
+                     I recently came across an article published in the journal <i>Health Affairs</i> that estimated the number of COVID-19 deaths 
+                     that may have been averted by Vaccines (see <i>Gupta, Sumedha, et al. "Vaccinations Against COVID-19 May Have Averted Up To 140,000 Deaths In The United States" Health Affairs 40.9 (2021): 1465-1472.). </i> 
+                     The research was timely and interesting, but equally important, it used publicly available data. Here, I try to replicate the statstical methodology with more current data and add interactive visualization of the result
+                     using the javascript library d3.js. 
+   
+                  </p>
+                                    
                </div>
             </div>
             <div class="collapse" id="collapseExample2">
                <div class="card card-body">
-                  Booyahahahahahahhah
+                  <p>
+                     In the paper, the authors first build a model where cumulative COVID death over time is explained by a handful of factors including, cumulative vaccines 
+                     administered over time and then check what this model spits out when you feed it counterfactual data where vaccines administered is set to zero.
+
+                     The detailed steps are as follows:
+                     <dl>
+                        <dt>Construct a panel dataset</dt>
+                        <dd> <ul>
+                           <li>Data is unique by state and week</li>
+                           <li>Each row in the data contains cumulative COVID deaths and cumulative vaccines administered at the end of that week for a given state</li>
+                           <li>Observation window runs from 2020-12-21 to 2021-11-28, a total of 49 weeks where each week starts on a sunday and ends on a saturday</li>
+                           <li>Also included are dummy variables for the week and state</li>
+                         </ul>
+                        </dd>
+                        <dt>Run a quasipoisson regression</dt>
+                        <dd>
+                           <ul>
+                              <li>Outcome is cumulative COVID deaths per 100 adults (18+) for a given state-week</li>
+                              <li>Predictor variables includes Cumulative vaccinations per 100 adults for given week, as well as 4 previous weeks, for a given state</li>
+                              <li>Also included as covariates and week and state dummies</li>
+                              <li>The regression coefficents are saved here <i>https://github.com/rbashyal/CovidMortalityProject/blob/master/regression_coefficents.txt</i> </li>
+                            </ul>
+                        </dd>
+                        <dt>Get realized and counterfactual predictions</dt>
+                        <dd>
+                           <ul>
+                              <li>Once the model is fit, produce the predicted values for each observation as well as the standard error of the prediction (delta method)</li>
+                              <li>Replace all values of cumulative vaccinattion with zeroes and run predict again. Get standard error of prediction</li>
+                              <li>For each week+state pair, the difference between the two predicted values represents the estimate of averted deaths</li>
+                              <li>Adding averted deaths across all states for each week produces the national estimate of averted deaths for that week</li>
+                              <li>Use the standard errors of prediction to draw confidence interval around each prediction</li>
+                            </ul>
+                        </dd>
+                     </dl>
+                     
+                  </p>
+                      
                </div>
             </div>
             <div class="collapse" id="collapseExample3">
                <div class="card card-body">
-                  Booyahahahahahahhah
+                  <p>
+                     Data on cumulative vaccines administered can be downloaded from <i>https://github.com/BloombergGraphics/covid-vaccine-tracker-data</i> <br>
+                     
+                     Data on cumulative COVID-19 deaths can be downloaded from here <i>https://github.com/nytimes/covid-19-data</i> <br>
+
+                     All codes used to produce the predictions and the charts can be found here <i>https://github.com/rbashyal/CovidMortalityProject</i>
+                 
+                  </p>
                </div>
             </div>
          </div>
