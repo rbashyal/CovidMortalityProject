@@ -301,7 +301,7 @@ function drawline(){
               .style("font-family", "Georgia")
               .style("font-size", "95%")
 
-              const  var_list = ["DEATH_VACC1", "DEATH_VACC0", "cum_deaths"];
+              const  var_list = ["DEATH_VACC1", "DEATH_VACC0"];
 
               for(const item of var_list) {
 
