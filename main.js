@@ -243,8 +243,8 @@ function drawline(){
                 })
                 .text(text)
                  .attr("transform", function(d) {
-                  return "translate(" + (xScale(d.xval) + 25)  
-                  + "," + (yScale(d.yval) -20 ) + ")";})
+                  return "translate(" + (xScale(d.xval) + -70)  
+                  + "," + (yScale(d.yval) -40 ) + ")";})
                 .attr("dy", em)
                 .style("font-family", "Georgia")
                 ;
